@@ -62,10 +62,14 @@ namespace Calculator
                     string[] inputDataMultiply = Console.ReadLine().Split(",");
                     float[] numbersMultiply = MakeArray(inputDataMultiply);
 
-                    Console.WriteLine($"A subtração dos números é: {Multiply(numbersMultiply)}");
+                    Console.WriteLine($"A multiplicação dos números é: {Multiply(numbersMultiply)}");
                     break;
                 case "/":
                     Console.WriteLine("Insira os números, separados por ',': ");
+                    string[] inputDataDivide = Console.ReadLine().Split(",");
+                    float[] numbersDivide = MakeArray(inputDataDivide);
+
+                    Console.WriteLine($"A Divisão dos números é: {Divide(numbersDivide)}");
                     break;
                 case "0":
                     Console.WriteLine("Obrigado por usar Calculator");
@@ -118,6 +122,31 @@ namespace Calculator
                 else
                 {
                     count *= numbers[i];
+                }
+            }
+
+            return count;
+        }
+
+        static float Divide(float[] numbers)
+        {
+            float count = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] == 0)
+                {
+                    Console.WriteLine("ERRO: Não pode ser feito divisão por 0.");
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        count = numbers[i];
+                    }
+                    else
+                    {
+                        count /= numbers[i];
+                    }
                 }
             }
 
