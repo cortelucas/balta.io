@@ -28,6 +28,11 @@ namespace Calculator
             {
                 case "+":
                     Console.WriteLine("Insira os números, separados por ',': ");
+                    string[] inputData = Console.ReadLine().Split(",");
+                    float[] numbers = MakeArray(inputData);
+                    
+                    Console.WriteLine($"A soma dos números é: {Add(numbers)}");
+
                     break;
                 case "-":
                     Console.WriteLine("Insira os números, separados por ',': ");
@@ -46,6 +51,19 @@ namespace Calculator
                     break;
             }
         }
+
+        static float Add(float[] numbers) 
+        {
+            float count = 0;
+            foreach (var number in numbers)
+            {
+                float value = count + number;
+                count = value;
+            }
+
+            return count;
+        }
+
         static float[] MakeArray(string[] inputData)
         {
             return Array.ConvertAll(inputData, float.Parse);
