@@ -9,11 +9,11 @@ namespace Calculator
             Menu();
         }
 
-        static void Menu ()
+        static void Menu()
         {
             Console.Clear();
             string[] menuLines = {
-                "┏━━━━━  Calculator  ━━━━━┓", 
+                "┏━━━━━  Calculator  ━━━━━┓",
                 "┣━━━━━     MENU     ━━━━━┫",
                 "┃ Adição ........... [+] ┃",
                 "┃ Subtração ........ [-] ┃",
@@ -30,13 +30,35 @@ namespace Calculator
             Console.WriteLine("Insira a Sua Escolha, por exemplo *: ");
             string choice = (Console.ReadLine() ?? "0").ToString();
 
+            ChooseAction(choice);
+        }
+
+        static float Add(float[] numbers)
+        {
+            float count = 0;
+            foreach (var number in numbers)
+            {
+                float value = count + number;
+                count = value;
+            }
+
+            return count;
+        }
+
+        static float[] MakeArray(string[] inputData)
+        {
+            return Array.ConvertAll(inputData, float.Parse);
+        }
+
+        static void ChooseAction(string choice)
+        {
             switch (choice)
             {
                 case "+":
                     Console.WriteLine("Insira os números, separados por ',': ");
                     string[] inputData = Console.ReadLine().Split(",");
                     float[] numbers = MakeArray(inputData);
-                    
+
                     Console.WriteLine($"A soma dos números é: {Add(numbers)}");
 
                     break;
@@ -56,23 +78,6 @@ namespace Calculator
                     Console.WriteLine("Você não digitou uma opção válida");
                     break;
             }
-        }
-
-        static float Add(float[] numbers) 
-        {
-            float count = 0;
-            foreach (var number in numbers)
-            {
-                float value = count + number;
-                count = value;
-            }
-
-            return count;
-        }
-
-        static float[] MakeArray(string[] inputData)
-        {
-            return Array.ConvertAll(inputData, float.Parse);
         }
     }
 }
