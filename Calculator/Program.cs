@@ -6,12 +6,12 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Menu();
         }
 
         static void Menu()
         {
-            Console.Clear();
             string[] menuLines = {
                 "┏━━━━━  Calculator  ━━━━━┓",
                 "┣━━━━━     MENU     ━━━━━┫",
@@ -44,32 +44,21 @@ namespace Calculator
             {
                 case "+":
                     Console.WriteLine("Insira os números, separados por ',': ");
-                    string[] inputDataAdd = Console.ReadLine().Split(",");
-                    float[] numbersAdd = MakeArray(inputDataAdd);
-
-                    Console.WriteLine($"A soma dos números é: {Add(numbersAdd)}");
+                    Add(Console.ReadLine().Split(","));
 
                     break;
                 case "-":
                     Console.WriteLine("Insira os números, separados por ',': ");
-                    string[] inputDataSubtract = Console.ReadLine().Split(",");
-                    float[] numbersSubtract = MakeArray(inputDataSubtract);
+                    Subtract(Console.ReadLine().Split(","));
 
-                    Console.WriteLine($"A subtração dos números é: {Subtract(numbersSubtract)}");
                     break;
                 case "*":
                     Console.WriteLine("Insira os números, separados por ',': ");
-                    string[] inputDataMultiply = Console.ReadLine().Split(",");
-                    float[] numbersMultiply = MakeArray(inputDataMultiply);
-
-                    Console.WriteLine($"A multiplicação dos números é: {Multiply(numbersMultiply)}");
+                    Multiply(Console.ReadLine().Split(","));
                     break;
                 case "/":
                     Console.WriteLine("Insira os números, separados por ',': ");
-                    string[] inputDataDivide = Console.ReadLine().Split(",");
-                    float[] numbersDivide = MakeArray(inputDataDivide);
-
-                    Console.WriteLine($"A Divisão dos números é: {Divide(numbersDivide)}");
+                    Divide(Console.ReadLine().Split(","));
                     break;
                 case "0":
                     Console.WriteLine("Obrigado por usar Calculator");
@@ -78,59 +67,68 @@ namespace Calculator
                     Console.WriteLine("Você não digitou uma opção válida");
                     break;
             }
+            Console.WriteLine("");
+            Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine("");
+            
+            Menu();
         }
 
-        static float Add(float[] numbers)
+        static void Add(string[] inputData)
         {
-            float count = 0;
+            float[] numbers = MakeArray(inputData);
+            float result = 0;
             foreach (var number in numbers)
             {
-                float value = count + number;
-                count = value;
+                float value = result + number;
+                result = value;
             }
 
-            return count;
+            Console.WriteLine($"A soma dos números é: { result }");
         }
 
-        static float Subtract(float[] numbers)
+        static void Subtract(string[] inputData)
         {
-            float count = 0;
+            float[] numbers = MakeArray(inputData);
+            float result = 0;
             for (int i = 0; i < numbers.Length; i++)
             {
                 if (i == 0)
                 {
-                    count = numbers[i];
+                    result = numbers[i];
                 }
                 else
                 {
-                    count -= numbers[i];
+                    result -= numbers[i];
                 }
             }
 
-            return count;
+            Console.WriteLine($"A subtração dos números é: { result }");
         }
 
-        static float Multiply(float[] numbers)
+        static void Multiply(string[] inputData)
         {
-            float count = 0;
+            float[] numbers = MakeArray(inputData);
+            float result = 0;
             for (int i = 0; i < numbers.Length; i++)
             {
                 if (i == 0)
                 {
-                    count = numbers[i];
+                    result = numbers[i];
                 }
                 else
                 {
-                    count *= numbers[i];
+                    result *= numbers[i];
                 }
             }
 
-            return count;
+            Console.WriteLine($"A multiplicação dos números é: { result }");
         }
 
-        static float Divide(float[] numbers)
+        static void Divide(string[] inputData)
         {
-            float count = 0;
+            float[] numbers = MakeArray(inputData);
+            float result = 0;
             for (int i = 0; i < numbers.Length; i++)
             {
                 if (numbers[i] == 0)
@@ -141,16 +139,16 @@ namespace Calculator
                 {
                     if (i == 0)
                     {
-                        count = numbers[i];
+                        result = numbers[i];
                     }
                     else
                     {
-                        count /= numbers[i];
+                        result /= numbers[i];
                     }
                 }
             }
 
-            return count;
+            Console.WriteLine($"A divisão dos números é: { result }");
         }
     }
 }
