@@ -46,5 +46,9 @@ namespace Calculator
                     break;
             }
         }
+        static float[] MakeArray(string[] inputData)
+        {
+            return Array.ConvertAll(inputData, float.Parse);
+        }
     }
 }
