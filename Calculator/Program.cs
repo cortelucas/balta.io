@@ -59,6 +59,10 @@ namespace Calculator
                     break;
                 case "*":
                     Console.WriteLine("Insira os números, separados por ',': ");
+                    string[] inputDataMultiply = Console.ReadLine().Split(",");
+                    float[] numbersMultiply = MakeArray(inputDataMultiply);
+
+                    Console.WriteLine($"A subtração dos números é: {Multiply(numbersMultiply)}");
                     break;
                 case "/":
                     Console.WriteLine("Insira os números, separados por ',': ");
@@ -96,6 +100,24 @@ namespace Calculator
                 else
                 {
                     count -= numbers[i];
+                }
+            }
+
+            return count;
+        }
+
+        static float Multiply(float[] numbers)
+        {
+            float count = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i == 0)
+                {
+                    count = numbers[i];
+                }
+                else
+                {
+                    count *= numbers[i];
                 }
             }
 
