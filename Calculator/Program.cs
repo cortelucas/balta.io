@@ -12,16 +12,22 @@ namespace Calculator
         static void Menu ()
         {
             Console.Clear();
-            Console.WriteLine("------ Calculator -----");
-            Console.WriteLine("--------- MENU --------");
-            Console.WriteLine("| Adição ........ (+) |");
-            Console.WriteLine("| Subtração ..... (-) |");
-            Console.WriteLine("| Multiplicação . (*) |");
-            Console.WriteLine("| Divisão ....... (/) |");
-            Console.WriteLine("| Sair .......... (0) |");
-            Console.WriteLine("-----------------------");
+            string[] menuLines = {
+                "┏━━━━━  Calculator  ━━━━━┓", 
+                "┣━━━━━     MENU     ━━━━━┫",
+                "┃ Adição ........... [+] ┃",
+                "┃ Subtração ........ [-] ┃",
+                "┃ Multiplicação .... [*] ┃",
+                "┃ Divisão .......... [/] ┃",
+                "┃ Sair ............. [0] ┃",
+                "┗━━━━━━━━━━━━━━━━━━━━━━━━┛"
+            };
+            foreach (string line in menuLines)
+            {
+                Console.WriteLine(line);
+            }
             Console.WriteLine("");
-            Console.WriteLine("Insira a Sua Escolha: ");
+            Console.WriteLine("Insira a Sua Escolha, por exemplo *: ");
             string choice = (Console.ReadLine() ?? "0").ToString();
 
             switch (choice)
