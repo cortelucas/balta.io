@@ -33,18 +33,6 @@ namespace Calculator
             ChooseAction(choice);
         }
 
-        static float Add(float[] numbers)
-        {
-            float count = 0;
-            foreach (var number in numbers)
-            {
-                float value = count + number;
-                count = value;
-            }
-
-            return count;
-        }
-
         static float[] MakeArray(string[] inputData)
         {
             return Array.ConvertAll(inputData, float.Parse);
@@ -56,14 +44,18 @@ namespace Calculator
             {
                 case "+":
                     Console.WriteLine("Insira os números, separados por ',': ");
-                    string[] inputData = Console.ReadLine().Split(",");
-                    float[] numbers = MakeArray(inputData);
+                    string[] inputDataAdd = Console.ReadLine().Split(",");
+                    float[] numbersAdd = MakeArray(inputDataAdd);
 
-                    Console.WriteLine($"A soma dos números é: {Add(numbers)}");
+                    Console.WriteLine($"A soma dos números é: {Add(numbersAdd)}");
 
                     break;
                 case "-":
                     Console.WriteLine("Insira os números, separados por ',': ");
+                    string[] inputDataSubtract = Console.ReadLine().Split(",");
+                    float[] numbersSubtract = MakeArray(inputDataSubtract);
+
+                    Console.WriteLine($"A subtração dos números é: {Subtract(numbersSubtract)}");
                     break;
                 case "*":
                     Console.WriteLine("Insira os números, separados por ',': ");
@@ -78,6 +70,36 @@ namespace Calculator
                     Console.WriteLine("Você não digitou uma opção válida");
                     break;
             }
+        }
+
+        static float Add(float[] numbers)
+        {
+            float count = 0;
+            foreach (var number in numbers)
+            {
+                float value = count + number;
+                count = value;
+            }
+
+            return count;
+        }
+
+        static float Subtract(float[] numbers)
+        {
+            float count = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i == 0)
+                {
+                    count = numbers[i];
+                }
+                else
+                {
+                    count -= numbers[i];
+                }
+            }
+
+            return count;
         }
     }
 }
